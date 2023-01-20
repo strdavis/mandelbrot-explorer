@@ -6,16 +6,18 @@
 
 ## OVERVIEW
 
-Mandelbrot Explorer is an interactive application for exploring the Mandelbrot set. It displays a dynamic image of the set, which you can traverse in real time using the mouse. The following parameters can be configured:
+Mandelbrot Explorer is an interactive Linux application for exploring the Mandelbrot set. It displays a dynamic image of the set which you can traverse in real time using the mouse. The following parameters can be configured:
 
 - Colour palette
 - Zoom depth limit
 - Level of detail
 - Initial position
-- Image size
-- Text display of current position
+- Resolution
+- Textual display of coordinates and scale
 
-Mandelbrot Explorer can also save and load positions, making it easy to return to them. It is written for Linux, in C++, with OpenGL.<br />
+Mandelbrot Explorer can also save and load positions, making it easy to return to them. It is written in C++ with OpenGL.<br/>
+
+```Note:``` Windows users can run Mandelbrot Explorer on the latest version of [WSL](https://learn.microsoft.com/en-us/windows/wsl/), which supports GUI applications.<br />
 
 ## DEPENDENCIES
 
@@ -57,15 +59,15 @@ Click-and-drag to traverse. Use the mouse scroll wheel to zoom.<br />
 
 ### KEYBOARD
 
-Press the "Q" key to quit.<br /><br />
+Press the ```Q``` key to quit.<br /><br />
 To save the current explorer state:
-  1. Press the "S" key.
+  1. Press the ```S``` key.
   2. Click on the terminal window.
   3. Type a name for the save file.
   4. Press enter.
   5. Click on the Mandelbrot Explorer window to continue exploring.
 
-The save file is created in the directory where mandelbrot_explorer is being executed.  
+The save file is created in the directory where ```mandelbrot_explorer``` is being executed.  
 Saved states can be loaded on startup via the command-line interface (see "OPTIONS").
 
 ## OPTIONS
@@ -79,15 +81,15 @@ The following options are provided:
 
 | Option | Description |
 | --- | --- |
-| -d | Set window dimension (width = height, in number of pixels).<br />Accepts int in range [250, 1000].<br />Window is always square, and is not resizable.<br />Default is 750. |
-| -x | Set initial x-position of image center.<br />Accepts double in range [-2.0, 2.0].<br />Default is -0.5.|
-| -y | Set initial y-position of image center.<br />Accepts double in range [-2.0, 2.0].<br />Default is 0.0.|
-| -s | Set initial image scale.<br />If precision is set to "float" (default), accepts float in range [0.00001, 100.0].<br />If precision is set to "double", accepts double in range [0.00000000000002, 100.0].<br />Default is 1.5.|
-| -i | Set maximum number of iterations used in image-generation algorithm.<br />Accepts int in range [16, 50000].<br />Greater values produce more detailed images.<br /><br />Note that greater values are more computationally intensive, and will degrade performance more or less quickly depending on your hardware. If increasing this value, it is recommended to do so by increments of a few hundred. If you find a region that is all black at a deep level of zoom, increasing this value will usually reveal hidden details.<br />Default is 250.|
-| -c | Set colour palette.<br />Accepts the following strings: <code>greyscale</code>, <code>woodstock</code>, <code>abyss</code>, <code>spectrum</code><br />Default is <code>greyscale</code>.|
-| -p | Set numerical precision.<br />Accepts the following strings: <code>float</code>, <code>double</code><br /><code>float</code> configures the explorer to use single-precision floating point computations. This gives better performance, with a shallower maximum zoom.<br /><code>double</code> configures the explorer to use double-precision floating point computations. This gives worse performance, with a deeper maximum zoom.<br />Default is <code>float</code>.|
-| -t | Toggle the text display (of current position and scale).<br />Accepts the following strings: <code>true</code>, <code>false</code><br />In text display, "X" is the x-coordinate of the current image center, "Y" is the y-coordinate of the current image center, and "S" is the scaleof the current image.<br />Default is <code>true</code>.|
-| -l | Load state from a save file.<br />Accepts path to save file (relative path from directory where mandelbrot_explorer is being executed).<br />Cannot be used in conjunction with any other options.|
+| ```-d``` | Set window dimension i.e. resolution (width = height, in number of pixels).<br />Accepts int in range [250, 1000].<br />Window is always square, and is not resizable.<br />Default is 750. |
+| ```-x``` | Set initial x-position of image center.<br />Accepts double in range [-2.0, 2.0].<br />Default is -0.5.|
+| ```-y``` | Set initial y-position of image center.<br />Accepts double in range [-2.0, 2.0].<br />Default is 0.0.|
+| ```-s``` | Set initial image scale.<br />If precision is set to ```float``` (default), accepts float in range [0.00001, 100.0].<br />If precision is set to ```double```, accepts double in range [0.00000000000002, 100.0].<br />Default is 1.5.|
+| ```-i``` | Set maximum number of iterations used in fractal-generation algorithm.<br />Accepts int in range [16, 50000].<br />Greater values produce more detailed images.<br />Default is 250.<br /><br />Note that greater values will degrade performance more or less quickly depending on your hardware. When increasing this value, try increments of a few hundred or so. If you find a region that is all black at a deep level of zoom, increasing this value will usually reveal hidden details.|
+| ```-c``` | Set colour palette.<br />Accepts the following strings: <code>greyscale</code>, <code>woodstock</code>, <code>abyss</code>, <code>spectrum</code>.<br />Default is <code>greyscale</code>.|
+| ```-p``` | Set numerical precision (controls zoom depth limit).<br />Accepts the following strings: <code>float</code>, <code>double</code>.<br />Default is <code>float</code>.<br /><br /><code>float</code> configures the explorer to use single-precision floating point computations. This gives better performance, with a shallower maximum zoom. <code>double</code> configures the explorer to use double-precision floating point computations. This gives worse performance, with a deeper maximum zoom.|
+| ```-t``` | Toggle the textual display of current position and scale.<br />Accepts the following strings: <code>true</code>, <code>false</code><br /> Default is <code>true</code>.<br /><br />In text display, "X" is the x-coordinate of the current image center, "Y" is the y-coordinate of the current image center, and "S" is the scaleof the current image.|
+| ```-l``` | Load state from a save file.<br />Accepts path to save file (relative path from directory where mandelbrot_explorer is being executed).<br />Cannot be used in conjunction with any other options.|
           
 ### OPTIONS EXAMPLES
 
@@ -120,6 +122,6 @@ After building, run the test program:
 ./test_state_manager
 ```
 
-This tests the functionality for parsing command-line input, loading state, and saving state. To test the rendering and mouse-input functionality, run the program and verify its behaviour manually.
+This tests the functionality for parsing command-line input, loading state, and saving state. To test rendering and user input, run the program and verify its behaviour manually.
 
 
