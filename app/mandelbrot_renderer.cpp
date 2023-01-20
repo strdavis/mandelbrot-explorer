@@ -193,7 +193,7 @@ const char *mandelbrot_fragment_shader_source_float_woodstock = "#version 450 co
 	
 // Fragment shader.
 // Precision: double.
-// Color palette: abyss.
+// Color palette: woodstock.
 const char *mandelbrot_fragment_shader_source_double_woodstock = "#version 450 core \n"
 	"#define PI 3.1415926535897932384626433832795\n"
 	"#extension GL_ARB_gpu_shader_fp64: enable\n"

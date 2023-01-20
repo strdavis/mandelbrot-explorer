@@ -10,7 +10,6 @@
 #include <fstream>
 #include <vector>
 #include <map>
-#include <chrono>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <fmt/core.h>
@@ -29,9 +28,6 @@ using std::cin;
 using std::vector;
 using std::map;
 using std::pair;
-using std::chrono::high_resolution_clock;
-using std::chrono::duration;
-using std::chrono::duration_cast;
 using fmt::format;
 using current_state = state_manager::current_state;
 
